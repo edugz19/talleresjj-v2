@@ -1,0 +1,20 @@
+.card {
+    margin: 10px 20px;
+    padding: 5px 20px;
+    border: rgb(140, 199, 255) solid 1px;
+    border-radius: 15px;
+    min-width: min(200px);
+    max-width: max(600px);
+    width: calc(100vw - 10px);
+}
+
+h5 {
+    color: rgb(71, 163, 224); 
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.date {
+    font-size: 16px;
+    color: rgb(128, 128, 128);
+}

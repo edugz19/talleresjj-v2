@@ -1,0 +1,49 @@
+<ion-content>
+  <div class="login-form">
+    <ion-card>
+      <ion-card-content>
+        <h1>LOGIN</h1>
+        <img src="../../../assets/images/logo.png" alt="Logo">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <ion-item class="full-width-input mt-2">
+            <ion-input 
+            formControlName="username"
+            placeholder="Username" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p *ngIf="isValidField('username')" class="danger">{{ getErrorMessage('username') }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-input 
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Password" 
+            type="password" 
+            required
+            ></ion-input>
+            <ion-icon [name]="hide ? 'eye' : 'eye-off'" slot="end" (click)="hide = !hide"></ion-icon>
+          </ion-item>
+          <p *ngIf="isValidField('password')" class="danger">{{ getErrorMessage('password') }}</p>
+
+          <ion-button 
+          [disabled]="loginForm.invalid"
+          type="submit"
+          expand="block" 
+          class="mt-5 mb-2"
+          >Sign In</ion-button>
+
+          <button  
+          type='submit'
+          expand='block'
+          class="btn btn-danger btn-block mb-3"
+          (click)="onLoginGoogle()"
+          ><ion-icon name="logo-google"></ion-icon>GOOGLE</button>
+
+        </form>
+        <a routerLink="/forgot-password">Forgot your password?</a>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

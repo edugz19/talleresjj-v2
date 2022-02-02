@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+  
+    <ion-row>
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>Tasks <img src="../../../assets/images/tasks.png" alt="Tasks Logo"></ion-card-title>
+          <ion-card-subtitle>Manage, add, modify and delete tasks</ion-card-subtitle>
+          <ion-button expand="block" routerLink="/tasks">Go to Tasks Page</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  
+    <ion-row>
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>My Tasks <img src="../../../assets/images/tasks.png" alt="Tasks Logo"></ion-card-title>
+          <ion-card-subtitle>Check the tasks you have pending</ion-card-subtitle>
+          <ion-button expand="block" routerLink="/tasks/my-tasks">View my tasks</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+
+    <ion-row class="ion-align-self-center">
+      <ion-card *ngIf="isAdmin">
+        <ion-card-content>
+          <ion-card-title>Users <img src="../../../assets/images/users.png" alt="Users Logo"></ion-card-title>
+          <ion-card-subtitle>Manage, add, modify and delete users</ion-card-subtitle>
+          <ion-button expand="block" routerLink="/users">Go to Users Page</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

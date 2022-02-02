@@ -1,0 +1,99 @@
+<ion-content>
+  <div class="task-form">
+    <ion-card>
+      <ion-card-content>
+        <h1>Edit Task</h1>
+        <form [formGroup]="taskForm.baseForm">
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Title</ion-label>
+            <ion-input 
+            formControlName="title"
+            type="text" 
+            
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('title')">{{ taskForm.getErrorMessage("title") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea
+            auto-grow="true"
+            rows="1"
+            maxlength="243"
+            formControlName="description"
+            type="text" 
+            ></ion-textarea>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('description')">{{ taskForm.getErrorMessage("description") }}</p>
+
+          <ion-list class="mt-3">
+            <ion-item>
+              <ion-label>Select Employee</ion-label>
+              <ion-select 
+                placeholder="Select Employee"
+                formControlName="userId">
+                <ion-select-option value="">Not assigned</ion-select-option>
+                <ion-select-option value="{{ user.id }}" *ngFor="let user of users">{{ user.fullname }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p class="danger" *ngIf="checkField('userId')">{{ taskForm.getErrorMessage("userId") }}</p>
+
+          <ion-list class="mt-3">
+            <ion-item>
+              <ion-label>Select State</ion-label>
+              <ion-select 
+                placeholder="Select State"
+                formControlName="state">
+                <ion-select-option value="created">Created</ion-select-option>
+                <ion-select-option value="in progress">In Progress</ion-select-option>
+                <ion-select-option value="completed">Completed</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p class="danger" *ngIf="checkField('state')">{{ taskForm.getErrorMessage("state") }}</p>
+
+          <ion-list class="mt-3" *ngIf="checkState()">
+            <ion-item>
+              <ion-label>Select Course</ion-label>
+              <ion-select 
+                placeholder="Select Course"
+                formControlName="course">
+                <ion-select-option value="">None</ion-select-option>
+                <ion-select-option value="ongoing">OnGoing</ion-select-option>
+                <ion-select-option value="paused">Paused</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p class="danger" *ngIf="checkField('course')">{{ taskForm.getErrorMessage("course") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Observations</ion-label>
+            <ion-textarea
+            auto-grow="true"
+            rows="1"
+            maxlength="243"
+            formControlName="observations"
+            type="text" 
+            ></ion-textarea>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('observations')">{{ taskForm.getErrorMessage("observations") }}</p>
+
+          <div class="buttons">
+            <ion-button
+            type="submit"
+            (click)="onSave()"
+            [disabled]="!taskForm.baseForm.valid"
+            >Save</ion-button>
+
+            <ion-button 
+            color="danger"
+            (click)="close()"
+            >Cancel</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

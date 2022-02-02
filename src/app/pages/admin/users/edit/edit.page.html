@@ -1,0 +1,131 @@
+<ion-content>
+  <div class="login-form">
+    <ion-card>
+      <ion-card-content>
+        <h1>UPDATE USER</h1>
+        <form [formGroup]="userForm.baseForm">
+
+          <ion-item class="full-width-input">
+            <ion-label position="stacked">Fullname</ion-label>
+            <ion-input 
+            formControlName="fullname"
+            placeholder="Fullname" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('fullname')">{{ userForm.getErrorMessage("fullname") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Username</ion-label>
+            <ion-input 
+            formControlName="username"
+            placeholder="Username" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('username')">{{ userForm.getErrorMessage("username") }}</p>
+
+          <ion-list class="mt-3">
+            <ion-label position="stacked">Role</ion-label>
+            <ion-item>
+              <ion-select
+                formControlName="role">
+                <ion-select-option value="admin">Admin</ion-select-option>
+                <ion-select-option value="user">User</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p class="danger" *ngIf="checkField('role')">{{ userForm.getErrorMessage("role") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Phone</ion-label>
+            <ion-input 
+            formControlName="phone"
+            placeholder="Phone Number" 
+            type="text" 
+            minlength=9
+            maxlength=9
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('phone')">{{ userForm.getErrorMessage("phone") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Address</ion-label>
+            <ion-input 
+            formControlName="address"
+            placeholder="Address" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('address')">{{ userForm.getErrorMessage("address") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">City</ion-label>
+            <ion-input 
+            formControlName="city"
+            placeholder="City" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('city')">{{ userForm.getErrorMessage("city") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Province</ion-label>
+            <ion-input 
+            formControlName="province"
+            placeholder="Province" 
+            type="text" 
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('province')">{{ userForm.getErrorMessage("province") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">ZipCode</ion-label>
+            <ion-input 
+            formControlName="zipcode"
+            placeholder="Zip Code" 
+            type="text" 
+            minlength=5
+            maxlength=5
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('zipcode')">{{ userForm.getErrorMessage("zipcode") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">NNSS</ion-label>
+            <ion-input 
+            formControlName="nnss"
+            placeholder="NNSS" 
+            type="text" 
+            minlength=12
+            maxlength=12
+            required
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('nnss')">{{ userForm.getErrorMessage("nnss") }}</p>
+
+          <div class="buttons">
+            <ion-button
+            (click)="onSave()"
+            
+            >Save</ion-button>
+
+            <ion-button 
+            type="submit"
+            color="danger"
+            (click)="close()"
+            >Cancel</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+</ion-content>

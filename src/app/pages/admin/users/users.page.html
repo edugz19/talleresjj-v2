@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="button">
+    <ion-button 
+    (click)="newUser()"
+    expand="block" 
+    class="m-3"
+    color="primary"
+    >Add New User</ion-button>
+  </div>
+
+  <div class="items">
+    <app-user class="list"></app-user>
+  </div>
+
+</ion-content>

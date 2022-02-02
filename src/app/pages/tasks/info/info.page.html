@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Task Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card" style="border-bottom: 0;">
+    <div class="card-body">
+       <h1 class="text-uppercase">{{ task?.title }}</h1>
+      <p class="text-uppercase state {{checkState(task?.state)}}"><ion-icon name="{{checkState(task?.state)}}"></ion-icon>{{ task?.state }}</p>
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input disabled="true">{{ task?.description }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Date</ion-label>
+        <ion-input disabled="true">{{ format(task?.created_at) }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Assigned Employee</ion-label>
+        <ion-input disabled="true">{{ userFullname }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Course</ion-label>
+        <ion-input disabled="true">{{ task?.course | titlecase }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Observations</ion-label>
+        <ion-input disabled="true">{{ task?.observations }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="mb-3">Files</ion-label>
+        <p id="file" (click)="viewImage(downloadURL)" class="mb-2" [style]="style">{{ urlText }}</p>
+      </ion-item>
+        <div class="file">
+          <ion-label>Select a file: </ion-label>
+          <ion-input type="file" (change)="upload($event)"></ion-input>
+        </div>
+        <div class="progress">
+          <div 
+            class="progress-bar progress-bar-striped bg-success" 
+            role="progressbar" 
+            [style.width]="(uploadProgress | async) + '%'" 
+            [attr.aria-valuenow]="(uploadProgress | async)"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        
+      <p class="button">
+        <ion-icon name="create" (click)="update(id)"></ion-icon>
+        <ion-icon (click)="delete(id)" name="trash"></ion-icon>
+        <ion-icon name="arrow-back-circle" (click)="return()"></ion-icon>
+      </p>
+    </div>
+  </div>
+</ion-content>

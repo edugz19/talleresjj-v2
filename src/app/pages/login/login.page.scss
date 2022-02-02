@@ -1,0 +1,47 @@
+.login-form {
+    padding: 4rem 1rem;
+}
+
+ion-card {
+    max-width: 340px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+ion-input {
+    text-align: start;
+    color:#757575;
+}
+
+img {
+    width: calc(100vw / 2);
+    width: max(500px);
+}
+
+ion-icon {
+    font-size: calc(100vw / 22);
+    cursor: pointer;
+    font-size: max(25px);
+}
+
+.danger {
+    color: red;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.forget {
+    margin-top: 30px;
+}
+
+button {
+    font-size: 15px;
+}
+
+button > ion-icon {
+    font-size: 13px;
+    margin-right: 3px;
+}
+

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "talleres-jj-v2-c4254": {
+      "hosting": {
+        "app": [
+          "talleres-jj-v2-c4254"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "talleres-jj-v2-c4254"
+  }
+}

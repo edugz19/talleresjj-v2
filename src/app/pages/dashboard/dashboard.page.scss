@@ -1,0 +1,35 @@
+ion-button {
+    margin-top: 20px;
+}
+
+ion-card-subtitle {
+    margin-top: 12px;
+    text-align: center;
+}
+
+ion-card-title {
+    text-transform: uppercase;
+    color: rgb(50, 110, 150); 
+    font-weight: 700;
+    text-align: center;
+}
+
+img {
+    width: 30px;
+    margin-top: -5px;
+    margin-left: 5px;
+}
+
+ion-card {
+    max-width: max(800px);
+    min-width: min(300px);
+    width: calc(100vw - 50px);
+}
+
+ion-grid {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+

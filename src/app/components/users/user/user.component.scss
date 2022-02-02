@@ -1,0 +1,20 @@
+.card {
+    margin: 10px 20px;
+    min-width: min(300px);
+    max-width: max(600px);
+    width: calc(100vw - 10px);
+    min-height: min(220px);
+}
+
+ion-button {
+    width: 48%;
+}
+
+.role {
+    color: rgb(128, 128, 128);
+    font-size: 13px;
+}
+
+.username {
+    font-size: 14px;
+}

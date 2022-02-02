@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Tasks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="button">
+    <ion-button 
+      (click)="addTask()"
+      expand="block" 
+      class="m-3"
+      color="primary"
+    >Add New Task</ion-button>
+  </div>
+
+  <div class="items">
+    <app-task class="list"></app-task>
+  </div>
+  
+</ion-content>

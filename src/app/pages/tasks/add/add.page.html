@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="task-form">
+    <ion-card>
+      <ion-card-content>
+        <h1>NEW TASK</h1>
+        <form [formGroup]="taskForm.baseForm">
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Title</ion-label>
+            <ion-input 
+            formControlName="title"
+            type="text" 
+            ></ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('title')">{{ taskForm.getErrorMessage("title") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea
+            auto-grow="true"
+            rows="1"
+            maxlength="243"
+            formControlName="description"
+            type="text" 
+            ></ion-textarea>
+          </ion-item>
+          <p class="danger" *ngIf="checkField('description')">{{ taskForm.getErrorMessage("description") }}</p>
+
+          <ion-item class="full-width-input mt-3">
+            <ion-label position="stacked">Observations</ion-label>
+            <ion-textarea
+            auto-grow="true"
+            rows="1"
+            maxlength="243"
+            formControlName="observations"
+            type="text" 
+            ></ion-textarea>
+          </ion-item>
+
+          <div class="buttons">
+            <ion-button
+            type="submit"
+            (click)="onSave()"
+            [disabled]="!taskForm.baseForm.valid"
+            >Save</ion-button>
+
+            <ion-button 
+            color="danger"
+            (click)="close()"
+            >Cancel</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

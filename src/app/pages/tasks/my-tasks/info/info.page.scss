@@ -1,0 +1,58 @@
+ion-content {
+    .warning {
+        color: blue;
+    }
+    
+    .build {
+        color: rgb(163, 139, 0);
+    }
+    
+    .checkmark-circle {
+        color: green;
+    }
+    
+    .state {
+        font-size: 18px;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    ion-icon {
+        font-size: 22px;
+        margin-right: 5px;
+    }
+    
+    .content {
+        margin-top: 30px;
+    }
+    
+    h1 {
+        color: rgb(71, 163, 224);
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    ion-item {
+        margin: 0 20px 20px 0;
+    }
+    
+    ion-label {
+        font-size: 14px;
+    }
+    
+    .button {
+        margin-top: 40px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+    
+    .button ion-icon {
+        font-size: 35px;
+        margin: 0 20px;
+    }
+}

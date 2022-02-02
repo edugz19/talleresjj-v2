@@ -1,0 +1,17 @@
+<ion-menu side="start" menuId="first" contentId="main" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>TalleresJJ</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/dashboard" (click)="this.menu.close()"><ion-icon name="home"></ion-icon>Dashboard</ion-item>
+      <ion-item routerLink="/users" (click)="this.menu.close()" *ngIf="isAdmin"><ion-icon name="people"></ion-icon>Users</ion-item>
+      <ion-item routerLink="/tasks" (click)="this.menu.close()"><ion-icon name="receipt"></ion-icon>Tasks</ion-item>
+      <ion-item routerLink="/profile" (click)="this.menu.close()"><ion-icon name="person-circle"></ion-icon>Profile</ion-item>
+      <ion-item routerLink="/settings" (click)="this.menu.close()"><ion-icon name="settings"></ion-icon>Settings</ion-item>
+      <ion-item (click)="onExit()"><ion-icon name="exit"></ion-icon>Exit</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

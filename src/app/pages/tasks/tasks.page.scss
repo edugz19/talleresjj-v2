@@ -1,0 +1,23 @@
+.button {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-button {
+    height: 50px;
+    font-size: 18px;
+    max-width: max(600px);
+    min-width: min(300px);
+    align-self: center;
+    width: calc(100% - 10px);
+}
+
+.items {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+}

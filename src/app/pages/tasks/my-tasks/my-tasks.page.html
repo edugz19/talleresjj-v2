@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons> 
+    <ion-title>My Tasks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="items">
+    <div class="card" (click)="info(task.id)" *ngFor="let task of tasks">
+      <h5 class=" text-uppercase">{{ task.title }}</h5>          
+      <p class="date">{{ format(task.created_at) }}</p>
+    </div>
+  </div>
+</ion-content>

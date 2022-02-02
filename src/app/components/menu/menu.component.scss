@@ -1,0 +1,20 @@
+ion-icon {
+    margin-right: 8px;
+}
+
+ion-item {
+    cursor: pointer;
+    margin: 10px 10px 10px 0;
+}
+
+ion-title {
+    font-size: 20px;
+}
+
+ion-toolbar {
+    padding: 20px 0;
+}
+
+ion-menu {
+    --width: clamp(280px, calc(100vw * 0.4), 400px);
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="first"></ion-menu-button>
+    </ion-buttons>    
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card" style="border-bottom: 0;">
+    <div class="card-body">
+      <h1>{{ user?.username }}</h1>
+      <ion-item>
+        <ion-label position="stacked">Fullname</ion-label>
+        <ion-input disabled="true">{{ user?.fullname }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Role</ion-label>
+        <ion-input disabled="true">{{ user?.role | titlecase }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Phone</ion-label>
+        <ion-input disabled="true">{{ user?.phone }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">NNSS</ion-label>
+        <ion-input disabled="true">{{ user?.nnss }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Address</ion-label>
+        <ion-input disabled="true">{{ user?.address }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">City</ion-label>
+        <ion-input disabled="true">{{ user?.city }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Province</ion-label>
+        <ion-input disabled="true">{{ user?.province }}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Zip Code</ion-label>
+        <ion-input disabled="true">{{ user?.zipcode }}</ion-input>
+      </ion-item>
+      <p class="button">
+        <ion-icon name="arrow-back-circle" (click)="return()"></ion-icon>
+      </p>
+    </div>
+  </div>
+</ion-content>
+
