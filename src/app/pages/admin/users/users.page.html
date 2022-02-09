@@ -18,7 +18,7 @@
   </div>
 
   <div class="items">
-    <app-user class="list"></app-user>
+    <app-user [users]="user" *ngFor="let user of users" class="list"></app-user>
   </div>
 
 </ion-content>

@@ -14,17 +14,17 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/comp
 })
 export class TaskComponent implements OnInit {
 
-  tasks: Task[] = [];
+  
   tasksCollection: AngularFirestoreCollection;
 
   // private destroy$ = new Subject<any>();
 
-  @Input('tasks') task: Task[];
+  @Input('tasks') task: Task;
 
   constructor(private taskSvc: TasksService, public router: Router) {}
 
   ngOnInit() {
-    this.taskSvc.getTasks().subscribe( tasks => this.tasks = tasks );
+    this.taskSvc.getTasks().subscribe( tasks => console.log(tasks) );
   }
 
   // format(date: string): string {

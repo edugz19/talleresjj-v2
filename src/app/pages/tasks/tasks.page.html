@@ -18,7 +18,7 @@
   </div>
 
   <div class="items">
-    <app-task class="list"></app-task>
+    <app-task [tasks]="task" *ngFor="let task of tasks" class="list"></app-task>
   </div>
   
 </ion-content>

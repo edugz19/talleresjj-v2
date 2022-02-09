@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-body">   
-    <h5 class="text-uppercase" style="color: rgb(71, 163, 224); font-weight: 700;">{{ user[0].fullname }}</h5>    
+    <h5 class="text-uppercase" style="color: rgb(71, 163, 224); font-weight: 700;">{{ user?.fullname }}</h5>    
       <div class="info">    
-        <p class="role text-uppercase">{{ user[0].role }}</p>    
-        <p class="username">{{ user[0].username }}</p>     
+        <p class="role text-uppercase">{{ user?.role }}</p>    
+        <p class="username">{{ user?.username }}</p>     
         <p class="button">
-          <ion-button color="warning" (click)="update(user[0].id)">Update</ion-button>
-          <ion-button color="danger" (click)="delete(user[0].id)">Delete</ion-button>
+          <ion-button color="warning" (click)="update(user?.id)">Update</ion-button>
+          <ion-button color="danger" (click)="delete(user?.id)">Delete</ion-button>
           </p>
       </div>
   </div>

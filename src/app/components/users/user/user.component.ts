@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
   // private destroy$ = new Subject<any>();
 
-  @Input('users') user: User[];
+  @Input('users') user: User;
 
   constructor(private userSvc: UsersService, public router: Router) { }
 

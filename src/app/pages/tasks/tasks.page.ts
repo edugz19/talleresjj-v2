@@ -9,7 +9,7 @@ import { TasksService } from 'src/app/services/tasks/tasks.service';
   templateUrl: './tasks.page.html',
   styleUrls: ['./tasks.page.scss'],
 })
-export class TasksPage implements OnInit{
+export class TasksPage implements OnInit {
 
   tasks: Task[] = [];
 
@@ -23,16 +23,6 @@ export class TasksPage implements OnInit{
   // private destroy$ = new Subject<any>();
 
   // subscription: Subscription;
-
-  // constructor(private taskSvc: TasksService, public router: Router) { }
-
-  // ngOnInit() {
-  //   this.getTasks();
-
-  //   this.subscription = this.taskSvc.refresh$.subscribe(() => {
-  //     this.getTasks();
-  //   })
-  // }
 
   // ngOnDestroy() {
   //   this.destroy$.next();
