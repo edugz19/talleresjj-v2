@@ -6,6 +6,7 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
 import { AngularFireRemoteConfig } from '@angular/fire/compat/remote-config';
 import { getRemoteConfig, getValue, fetchAndActivate } from '@angular/fire/remote-config';
 import { MessagingService } from 'src/app/services/messaging/messaging.service';
+import { LocalNotifications } from '@capacitor/local-notifications'
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ export class DashboardPage implements OnInit {
     private msSvc: MessagingService
     ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await LocalNotifications.requestPermissions();
     const remoteConfig = getRemoteConfig();
 
     fetchAndActivate(remoteConfig)

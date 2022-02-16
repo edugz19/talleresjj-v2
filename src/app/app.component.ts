@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { PushNotifications } from '@capacitor/push-notifications'
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
+import { FcmService } from './services/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -7,18 +10,21 @@ import { PushNotifications } from '@capacitor/push-notifications'
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
-    this.initialize();
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private fcmService: FcmService
+  ) {
+    this.initializeApp();
   }
 
-  initialize(){
-    PushNotifications.addListener('pushNotificationReceived',
-      async (notification) => {
-        console.log('Notificación recibida: ' , notification)
-        let jsonData: JSON = JSON.parse(JSON.stringify(notification.data))
+  initializeApp(){
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
 
-        console.log(jsonData);
-      }  
-    )
+      this.fcmService.initPush();
+    });
   }
 }

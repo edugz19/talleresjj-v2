@@ -5,7 +5,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx'
-import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 import { AppComponent } from './app.component';
@@ -40,6 +39,8 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
   ],
   providers: [
     LocalNotifications,
+    SplashScreen,
+    StatusBar,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
