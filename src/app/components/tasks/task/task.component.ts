@@ -12,7 +12,7 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/comp
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
   
   tasksCollection: AngularFirestoreCollection;
@@ -22,10 +22,6 @@ export class TaskComponent implements OnInit {
   @Input('tasks') task: Task;
 
   constructor(private taskSvc: TasksService, public router: Router) {}
-
-  ngOnInit() {
-    this.taskSvc.getTasks().subscribe( tasks => console.log(tasks) );
-  }
 
   // format(date: string): string {
   //   let dateFormat = moment(date).format("Y/M/D HH:mm");

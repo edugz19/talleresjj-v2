@@ -40,7 +40,7 @@ export class MessagingService {
     })
   }
 
-  postMessageData(title, ) {
+  postMessageData(title) {
     const url = 'https://fcm.googleapis.com/fcm/send';
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
@@ -49,14 +49,12 @@ export class MessagingService {
 
     const body = {
       "notification": {
-        "title": "New task available.", 
-        "body": "New task is available to do (" + title + ")",
+        "title": "New task available to do", 
+        "body": title,
+        "icon": "../../assets/icon/favicon.png",
+        "click_action": 'http://localhost:8100/tasks'
         },
-        "to" : "/topics/tasks",
-        "data" : {
-          "volume" : "3.21.15",
-          "contents" : "http://www.news-magazine.com/world-week/21659772"
-        },
+        "to" : "/topics/tasks"
     }
 
     return this.http.post(url, body, { headers: headers })
