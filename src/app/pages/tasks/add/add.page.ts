@@ -11,6 +11,8 @@ import { User } from 'src/app/models/user.interface';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessagingService } from 'src/app/services/messaging/messaging.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add',
@@ -24,6 +26,7 @@ export class AddPage implements OnInit {
   user: User;
   taskId: string;
   token: string;
+  clickSub: any;
 
   constructor(
     private taskSvc: TasksService,
@@ -31,7 +34,9 @@ export class AddPage implements OnInit {
     public router: Router,
     public taskForm: BaseFormTask,
     private userSvc: UsersService,
-    private msSvc: MessagingService
+    private msSvc: MessagingService,
+    private notif: LocalNotifications,
+    public alertController: AlertController
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +60,20 @@ export class AddPage implements OnInit {
 
     this.taskSvc.addTask(this.task);
 
-    this.msSvc.postMessageData(this.task.title);
+    // this.msSvc.postMessageData(this.task.title);
+
+    this.clickSub = this.notif.on('click').subscribe(data => {
+        this.presentAlert('Your notifiations contains a secret = ' + data.data.secret);
+        this.unsub();
+    });
+
+    this.notif.schedule({
+        id: 1,
+        text: 'Single Local Notification',
+        data: { secret: 'secret' },
+        foreground: true,
+        icon: '../../../assets/icon/favicon.png'
+    })
 
     this.router.navigate(['/tasks']);
   }
@@ -66,6 +84,18 @@ export class AddPage implements OnInit {
 
   close(): void {
     this.router.navigate(['/tasks']);
+  }
+
+  async presentAlert(data) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: data,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  unsub() {
+    this.clickSub.unsubscribe();
   }
 
 }
