@@ -71,7 +71,11 @@ export class AddPage implements OnInit {
     //     }]
     // });
 
-    this.msSvc.postMessageData(this.task.title);
+    for (let i = 0; i < this.users.length; i++) {
+      for (let j = 0; j < this.users[i].devices.length; j++) {
+        this.msSvc.postMessageData(this.task.title, this.users[i].devices[j]);
+      }
+    }
 
     this.router.navigate(['/tasks']);
   }

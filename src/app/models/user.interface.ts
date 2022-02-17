@@ -13,4 +13,5 @@ export interface User {
     nnss: string;
     role: Roles;
     tasks: string[];
+    devices: string[];
 }

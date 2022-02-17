@@ -35,12 +35,13 @@ export class MessagingService {
         throw 'Error subscribing to topic: '+response.status + ' - ' + response.text();
       }
       console.log('Subscribed to "'+topic+'"');
+      alert('Subscribed to "'+topic+'"');
     }).catch(error => {
       console.error(error);
     })
   }
 
-  postMessageData(title) {
+  postMessageData(title, token) {
     const url = 'https://fcm.googleapis.com/fcm/send';
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
@@ -48,13 +49,18 @@ export class MessagingService {
     });
 
     const body = {
-      "notification": {
-        "title": "New task available to do", 
-        "body": title,
-        "icon": "../../assets/icon/favicon.png",
-        "click_action": 'http://localhost:8100/tasks'
-        },
-        "to" : "/topics/tasks"
+      notification: {
+        title: "New task available to do",
+        body: title,
+        icon: "../../assets/icon/favicon.png",
+        click_action: 'http://localhost:8100/tasks',
+        image: "../../assets/images/tasks.png"
+      },
+      data: {
+        title: "New task available to do",
+        body: title
+      },
+      to: token
     }
 
     return this.http.post(url, body, { headers: headers })
