@@ -32,7 +32,7 @@
         <ion-label position="stacked">Observations</ion-label>
         <ion-input disabled="true">{{ task?.observations }}</ion-input>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="stacked" class="mb-3">Files</ion-label>
         <p id="file" (click)="viewImage(downloadURL)" class="mb-2" [style]="style">{{ urlText }}</p>
       </ion-item>
@@ -49,6 +49,24 @@
             aria-valuemin="0"
             aria-valuemax="100"
           ></div>
+        </div> -->
+
+        <div [formGroup]="priceForm" *ngIf="this.progress === 'completed'">
+          <ion-item class="price">
+            <ion-label position="stacked" class="mb-3">Price</ion-label>
+            <ion-input
+              formControlName="price"
+              placeholder="Price" 
+              type="number" 
+              required
+            ></ion-input>
+          </ion-item>
+          <p *ngIf="isValidField('price')" class="danger">{{ getErrorMessage('price') }}</p>
+
+          <ion-button 
+            [disabled]="priceForm.invalid"
+            (click)="generateInvoice()"
+          >Generate invoice</ion-button>
         </div>
         
       <p class="button">

@@ -35,7 +35,6 @@ export class MessagingService {
         throw 'Error subscribing to topic: '+response.status + ' - ' + response.text();
       }
       console.log('Subscribed to "'+topic+'"');
-      alert('Subscribed to "'+topic+'"');
     }).catch(error => {
       console.error(error);
     })
