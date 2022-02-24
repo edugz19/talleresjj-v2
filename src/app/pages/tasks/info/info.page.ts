@@ -12,8 +12,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;  
 
+import ConvertApi from 'convertapi';
 
 @Component({
   selector: 'app-info',
@@ -43,7 +45,8 @@ export class InfoPage implements OnInit {
     private _route: ActivatedRoute,
     private userSvc: UsersService,
     private afStorage: AngularFireStorage,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -137,7 +140,7 @@ export class InfoPage implements OnInit {
     );
   }
 
-  generateInvoice() {
+  async generateInvoice() {
     let price = this.priceForm.value.price;
 
     let docDefinition = {  
@@ -252,7 +255,75 @@ export class InfoPage implements OnInit {
       }  
     }
 
-    pdfMake.createPdf(docDefinition).download(this.task.id);  
+    pdfMake.createPdf(docDefinition).open();  
+
+  //   const url = 'https://www.proturbiomarspa.com/files/_pdf-prueba.pdf';
+
+  //   let pdf = 'DatGenerado.pdf'
+
+  //   const headers = new HttpHeaders({
+  //     "Content-Type": "application/json"
+  //   });
+  //   const body = {
+  //     "Parameters": [
+  //       {
+  //           "Name": "File",
+  //           "FileValue": {
+  //               "Url": "https://www.proturbiomarspa.com/files/_pdf-prueba.pdf"
+  //           }
+  //       },
+  //       {
+  //           "Name": "StoreFile",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "FileName",
+  //           "Value": "encrypted"
+  //       },
+  //       {
+  //           "Name": "OwnerPassword",
+  //           "Value": "password"
+  //       },
+  //       {
+  //           "Name": "NoPrint",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoChange",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoCopy",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoChangeNotes",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoFormEdit",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoExtract",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoAssembly",
+  //           "Value": true
+  //       },
+  //       {
+  //           "Name": "NoHdPrint",
+  //           "Value": true
+  //       }
+  //     ]
+  //   }
+
+
+  //   this.http.post('https://v2.convertapi.com/convert/pdf/to/encrypt?Secret=DeYmfVFbD3Rj0yct', body, { headers })
+  //     .subscribe( res => {
+  //       console.log(res);
+  //     });    
   }
 
 }
