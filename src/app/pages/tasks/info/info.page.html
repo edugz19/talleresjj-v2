@@ -63,11 +63,18 @@
           </ion-item>
           <p *ngIf="isValidField('price')" class="danger">{{ getErrorMessage('price') }}</p>
 
+          <ion-item>
+            <ion-label position="stacked">Firm Here</ion-label>
+            <signature-pad [options]="signaturePadOptions" (onEndEvent)="drawComplete()"></signature-pad>
+            <ion-button (click)="clear()" id="button" style="width: 100%;">Clear</ion-button>
+          </ion-item>
+
           <ion-button 
             [disabled]="priceForm.invalid"
             (click)="generateInvoice()"
           >Generate invoice</ion-button>
         </div>
+
         
       <p class="button">
         <ion-icon name="create" (click)="update(id)"></ion-icon>

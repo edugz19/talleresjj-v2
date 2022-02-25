@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { InfoPageRoutingModule } from './info-routing.module';
 
 import { InfoPage } from './info.page';
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+
 
 @NgModule({
   imports: [
@@ -14,8 +17,10 @@ import { InfoPage } from './info.page';
     FormsModule,
     IonicModule,
     InfoPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SignaturePadModule
   ],
-  declarations: [InfoPage]
+  declarations: [InfoPage],
+  providers: [FileOpener]
 })
 export class InfoPageModule {}

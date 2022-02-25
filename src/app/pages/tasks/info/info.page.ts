@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
@@ -15,7 +15,10 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;  
 
-import ConvertApi from 'convertapi';
+import { SignaturePad } from 'angular2-signaturepad';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { Platform } from '@ionic/angular';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-info',
@@ -34,6 +37,17 @@ export class InfoPage implements OnInit {
   urlText: string;
   style: string;
   progress: string;
+  image: string;
+  pdf: any;
+
+  @ViewChild(SignaturePad) signaturePad: SignaturePad;
+
+  private signaturePadOptions: Object = {
+    'maxWidth': 1,
+    'minWidth': 1,
+    'canvasWidth': 500,
+    'canvasHeight': 300
+  };
 
   priceForm = this.fb.group({
     price: ['', [Validators.required, Validators.min(1)]]
@@ -46,7 +60,9 @@ export class InfoPage implements OnInit {
     private userSvc: UsersService,
     private afStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private fileOpener: FileOpener,
+    private plt: Platform
   ) {}
 
   ngOnInit(): void {
@@ -140,7 +156,15 @@ export class InfoPage implements OnInit {
     );
   }
 
-  async generateInvoice() {
+  drawComplete() {
+    this.image = this.signaturePad.toDataURL();
+  }
+
+  clear() {
+    this.signaturePad.clear();
+  }
+
+  async generateInvoice(event) {
     let price = this.priceForm.value.price;
 
     let docDefinition = {  
@@ -212,7 +236,7 @@ export class InfoPage implements OnInit {
           columns: [  
               [
                 { text: 'Observations: ' + this.task.observations, style: 'text' },
-                { qr: `${this.task.id}`, fit: '100' }
+                { qr: `${this.task.id}`, fit: '80' }
               ]  
           ]  
         }, 
@@ -234,7 +258,8 @@ export class InfoPage implements OnInit {
         {  
           columns: [
             [
-              { text: 'Customer Sign', style: 'text' }
+              { text: 'Customer Sign', style: 'text' },
+              { image: this.image, width: 200, style: 'image' }
             ],
             [
               { text: 'Client Sign', style: 'text' }
@@ -251,11 +276,63 @@ export class InfoPage implements OnInit {
         },
         text: {
           margin: [0,0,0,10]
+        },
+        image: {
+          margin: [10,0,0,0]
         }
       }  
     }
 
-    pdfMake.createPdf(docDefinition).open();  
+    this.pdf = pdfMake.createPdf(docDefinition);
+
+    if (this.plt.is('capacitor')) {
+
+      Filesystem.requestPermissions()
+        .then((res) => {
+          console.log(res);
+        })
+
+      this.pdf.getBase64(async (data) => {
+        let path = this.task.id + '.pdf';
+
+        const result = await Filesystem.writeFile({
+          path,
+          data: data,
+          directory: Directory.Documents,
+          recursive: true,
+          encoding: Encoding.UTF8,
+        })
+          .then( writeFileResponse => {
+            console.log('Success', writeFileResponse);
+
+            this.fileOpener.open(writeFileResponse.uri, 'application/pdf')
+              .then( () => console.log('File is opened'))
+              .catch(error => console.log('Error opening file', error));
+          }, error => {
+            console.log('Error', error);
+          })
+
+        
+      })
+
+    } else {
+      // pdfMake.createPdf(docDefinition).open();
+      // this.ref = this.afStorage.ref(`${this.id}/${this.id}`);
+    }
+
+    // let options = {
+    //   documentSize: 'A4',
+    //   type: 'share',
+    //   // landscape: 'portrait',
+    //   fileName: this.task.id + '.pdf'
+    // }
+
+    // this.pdfGenerator.fromData(pdf, options)
+    //   .then((base64) => {
+    //     console.log('OK', base64);
+    //   }).catch((error) => {
+    //     console.log('error', error);
+    //   });
 
   //   const url = 'https://www.proturbiomarspa.com/files/_pdf-prueba.pdf';
 
@@ -325,5 +402,6 @@ export class InfoPage implements OnInit {
   //       console.log(res);
   //     });    
   }
+  
 
 }

@@ -19,6 +19,7 @@ import { AngularFireRemoteConfigModule } from '@angular/fire/compat/remote-confi
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,8 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
     AngularFireDatabaseModule,
     AngularFireRemoteConfigModule,
     AngularFireStorageModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    SignaturePadModule
   ],
   providers: [
     LocalNotifications,
